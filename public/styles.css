@@ -1,0 +1,269 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI, sans-serif;
+    }
+    
+    body{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:30px;
+    color:white;
+    
+    background:linear-gradient(-45deg,#0f2027,#203a43,#2c5364,#141e30);
+    background-size:400% 400%;
+    animation:gradientMove 12s ease infinite;
+    }
+
+    @keyframes gradientMove{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+    }
+
+    .header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    width:100%;
+    max-width:900px;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-bottom:25px;
+    }
+    
+    .header p{
+    opacity:0.85;
+    }
+    
+    .nav{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    }
+
+    h1{
+    font-size:40px;
+    letter-spacing:2px;
+    }
+    
+    h2{
+    margin:30px 0 10px 0;
+    }
+
+    a{
+    color:white;
+    text-decoration:none;
+    padding:8px 14px;
+    border-radius:6px;
+    background:rgba(255,255,255,0.15);
+    transition:all 0.25s ease;
+    }
+    
+    a:hover{
+    background:rgba(255,255,255,0.35);
+    transform:translateY(-2px);
+    }
+
+    .messages{
+    width:100%;
+    max-width:900px;
+    }
+    
+    .message-card{
+    
+    width:100%;
+    padding:20px;
+    margin-top:15px;
+    
+    border-radius:12px;
+    
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(10px);
+    
+    box-shadow:0 8px 20px rgba(0,0,0,0.35);
+    
+    transition:transform .25s ease;
+    
+    animation:fadeInUp .6s ease;
+    }
+    
+    .message-card:hover{
+    transform:translateY(-5px);
+    }
+    
+    .message-card h3{
+    margin-bottom:8px;
+    }
+    
+    .message-card p{
+    line-height:1.5;
+    }
+
+    .meta{
+    margin-top:10px;
+    font-size:13px;
+    opacity:0.8;
+    }
+    
+    .message-card form{
+    display:inline;
+    }
+    
+    .delete-btn{
+    margin-top:10px;
+    padding:6px 12px;
+    
+    background:#ff4b4b;
+    border:none;
+    border-radius:6px;
+    
+    color:white;
+    cursor:pointer;
+    
+    transition:background .25s ease;
+    }
+    
+    .delete-btn:hover{
+    background:#ff0000;
+    }
+    
+    
+    form{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    
+    padding:28px;
+    margin-top:20px;
+    
+    width:100%;
+    max-width:400px;
+    
+    border-radius:12px;
+
+    
+    animation:fadeIn .7s ease;
+    }
+    
+    label{
+    font-size:14px;
+    opacity:0.9;
+    }
+    
+    input, textarea{
+    
+    padding:10px;
+    
+    border:none;
+    border-radius:6px;
+    
+    outline:none;
+    
+    font-size:14px;
+    }
+    
+    textarea{
+    resize:none;
+    height:100px;
+    }
+    
+    button{
+    padding:10px;
+    
+    border:none;
+    border-radius:6px;
+    
+    background:#00c6ff;
+    color:white;
+    
+    font-weight:bold;
+    cursor:pointer;
+    
+    transition:all .25s ease;
+    }
+    
+    button:hover{
+    transform:scale(1.05);
+    background:#0072ff;
+    }
+    
+    
+    ul{
+    list-style:none;
+    margin-top:15px;
+    }
+    
+    li{
+    color:#ff9e9e;
+    font-size:14px;
+    }
+    
+    
+    @keyframes fadeIn{
+    from{
+    opacity:0;
+    transform:translateY(-20px);
+    }
+    to{
+    opacity:1;
+    transform:translateY(0);
+    }
+    }
+    
+    @keyframes fadeInUp{
+    from{
+    opacity:0;
+    transform:translateY(25px);
+    }
+    to{
+    opacity:1;
+    transform:translateY(0);
+    }
+    }
+    
+    @media (max-width:900px){
+    
+    .header{
+    flex-direction:column;
+    align-items:flex-start;
+    }
+    
+    h1{
+    font-size:34px;
+    }
+    
+    }
+    
+    @media (max-width:600px){
+    
+    body{
+    padding:20px;
+    }
+    
+    h1{
+    font-size:30px;
+    }
+    
+    .nav{
+    width:100%;
+    flex-wrap:wrap;
+    }
+    
+    a{
+    flex-grow:1;
+    text-align:center;
+    }
+    
+    .message-card{
+    padding:16px;
+    }
+    
+    form{
+    padding:22px;
+    }
+    
+    }
