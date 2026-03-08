@@ -1,0 +1,39 @@
+const pool = require("../db/pool");
+
+async function createMessage(title, text, userId) {
+  await pool.query(
+    `INSERT INTO messages (title,text,user_id)
+     VALUES ($1,$2,$3)`,
+    [title, text, userId]
+  );
+}
+
+async function getAllMessages() {
+  const { rows } = await pool.query(`
+    SELECT messages.id,
+           messages.title,
+           messages.text,
+           messages.created_at,
+           users.first_name,
+           users.last_name
+    FROM messages
+    JOIN users
+    ON messages.user_id = users.id
+    ORDER BY created_at DESC
+  `);
+
+  return rows;
+}
+
+async function deleteMessage(messageId) {
+    await pool.query(
+      `DELETE FROM messages WHERE id = $1`,
+      [messageId]
+    );
+  }
+
+module.exports = {
+  createMessage,
+  getAllMessages,
+  deleteMessage
+};
