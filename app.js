@@ -3,6 +3,10 @@ const express = require("express");
 const path = require("path");
 const session = require("express-session");
 const passport = require("passport");
+const authRouter = require("./routes/authRouter");
+const messageRouter = require("./routes/messageRouter");
+require("./config/passport");
+
 
 const app = express();
 
@@ -13,9 +17,23 @@ app.set("view engine", "ejs");
 
 app.use(express.static(path.join(__dirname, "public")));
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
+app.use(
+    session({
+      secret: process.env.SESSION_SECRET,
+      resave: false,
+      saveUninitialized: false,
+    })
+  );
+  
+app.use(passport.session());
+
+app.use("/", authRouter);
+app.use("/", messageRouter);
+
+app.use((req, res, next) => {
+    res.locals.user = req.user;
+    next();
+  });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, (error) => {
