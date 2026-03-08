@@ -9,5 +9,24 @@
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
     "pg": "^8.20.0"
-  }
+  },
+  "name": "members-only",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anuj-Kumar0/members-only.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Anuj-Kumar0/members-only/issues"
+  },
+  "homepage": "https://github.com/Anuj-Kumar0/members-only#readme"
 }
