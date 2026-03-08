@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Clubhouse</title>
+</head>
+
+<body>
+    <div class="header">
+
+        <h1>Clubhouse</h1>
+
+        <% if (user) { %>
+
+            <div>
+                <p>Welcome <%= user.first_name %>
+                </p>
+            </div>
+
+            <div class="nav">
+                <a href="/messages/new">Create Message</a>
+
+                <% if (!user.membership_status) { %>
+                    <a href="/join-club">Join Club</a>
+                    <% } %>
+
+                        <a href="/logout">Logout</a>
+            </div>
+
+            <% } else { %>
+
+                <div class="nav">
+                    <a href="/login">Login</a>
+                    <a href="/signup">Signup</a>
+                </div>
+
+                <% } %>
+
+    </div>
+
+    <h2>Messages</h2>
+
+    <div class="messages">
+
+        <% messages.forEach(message=> { %>
+
+            <div class="message-card">
+
+                <h3>
+                    <%= message.title %>
+                </h3>
+
+                <p>
+                    <%= message.text %>
+                </p>
+
+                <% if (user && user.membership_status) { %>
+
+                    <p class="meta">
+                        Posted by
+                        <%= message.first_name %>
+                            <%= message.last_name %>
+                                on
+                                <%= message.created_at.toDateString() %>
+                    </p>
+
+                    <% } %>
+
+                        <% if (user && user.is_admin) { %>
+
+                            <form action="/messages/<%= message.id %>/delete" method="POST">
+                                <button class="delete-btn">Delete</button>
+                            </form>
+
+                            <% } %>
+
+            </div>
+
+            <% }) %>
+    </div>
+
+</body>
+
+</html>
