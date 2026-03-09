@@ -46,7 +46,7 @@ exports.joinClubGet = (req, res) => {
 };
 
 exports.joinClubPost = async (req, res) => {
-  const SECRET = "odinclub";
+  const SECRET = process.env.CLUB_PASSCODE;
 
   if (req.body.passcode !== SECRET) {
     return res.render("join-club", { error: "Wrong passcode" });
