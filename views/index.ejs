@@ -60,22 +60,27 @@
                 <% if (user && user.membership_status) { %>
 
                     <p class="meta">
-                        Posted by
-                        <%= message.first_name %>
-                            <%= message.last_name %>
-                                on
-                                <%= message.created_at.toDateString() %>
+                        Posted by (<%= message.first_name %>
+                            <%= message.last_name %>)
+                                on (<%= message.created_at.toDateString() %>)
                     </p>
 
-                    <% } %>
+                    <% } else { %>
 
-                        <% if (user && user.is_admin) { %>
+                        <p class="meta">
+                            Posted by Anonymous (<a href="/join-club" class="plain-link">Join Club</a> to see the
+                            author)
+                        </p>
 
-                            <form action="/messages/<%= message.id %>/delete" method="POST">
-                                <button class="delete-btn">Delete</button>
-                            </form>
+                        <% } %>
 
-                            <% } %>
+                            <% if (user && user.is_admin) { %>
+
+                                <form action="/messages/<%= message.id %>/delete" method="POST">
+                                    <button class="delete-btn">Delete</button>
+                                </form>
+
+                                <% } %>
 
             </div>
 
