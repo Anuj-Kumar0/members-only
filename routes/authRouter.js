@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const passport = require("passport");
 const authController = require("../controllers/authController");
+const ensureAuth = require("../middleware/authMiddleware");
 
 const router = Router();
 
@@ -18,8 +19,8 @@ router.post(
   })
 );
 
-router.get("/join-club", authController.joinClubGet);
-router.post("/join-club", authController.joinClubPost);
+router.get("/join-club", ensureAuth, authController.joinClubGet);
+router.post("/join-club", ensureAuth, authController.joinClubPost);
 
 router.get("/logout", authController.logout);
 
