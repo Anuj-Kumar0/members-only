@@ -27,13 +27,15 @@ app.use(
   
 app.use(passport.session());
 
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  next();
+});
+
+
 app.use("/", authRouter);
 app.use("/", messageRouter);
 
-app.use((req, res, next) => {
-    res.locals.user = req.user;
-    next();
-  });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, (error) => {
