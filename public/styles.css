@@ -267,3 +267,15 @@
     }
     
     }
+
+    .plain-link {
+        all: unset;
+        cursor: pointer;
+        color: #ffd166;   
+        text-decoration: underline;
+        font-weight: 500;
+      }
+      
+      .plain-link:hover {
+        color: whitesmoke;
+      }
