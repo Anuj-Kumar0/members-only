@@ -7,11 +7,27 @@ exports.signupGet = (req, res) => {
 };
 
 exports.signupPost = [
-  body("firstName").trim().isLength({ min: 2 }),
-  body("lastName").trim().isLength({ min: 2 }),
-  body("email").isEmail().normalizeEmail(),
-  body("password").isLength({ min: 6 }),
-  body("confirmPassword").custom((value, { req }) => {
+  body("firstName")
+  .trim()
+  .isLength({ min: 2 })
+  .withMessage("First name must be at least 2 characters long"),
+
+body("lastName")
+  .trim()
+  .isLength({ min: 2 })
+  .withMessage("Last name must be at least 2 characters long"),
+
+body("email")
+  .isEmail()
+  .withMessage("Please enter a valid email address")
+  .normalizeEmail(),
+
+body("password")
+  .isLength({ min: 6 })
+  .withMessage("Password must be at least 6 characters long"),
+
+body("confirmPassword")
+  .custom((value, { req }) => {
     if (value !== req.body.password) {
       throw new Error("Passwords must match");
     }
