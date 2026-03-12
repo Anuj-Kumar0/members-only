@@ -54,7 +54,10 @@ body("confirmPassword")
 ];
 
 exports.loginGet = (req, res) => {
-  res.render("login", { error: null });
+  const error = req.session.messages ? req.session.messages[0] : null;
+  req.session.messages = [];
+
+  res.render("login", { error });
 };
 
 exports.joinClubGet = (req, res) => {
