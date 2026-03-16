@@ -36,6 +36,19 @@ app.use((req, res, next) => {
 app.use("/", authRouter);
 app.use("/", messageRouter);
 
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+
+  const statusCode = err.status || 500;
+
+  res.status(statusCode);
+
+  res.render("error", {
+    message: err.message || "Internal Server Error",
+    status: statusCode,
+  });
+});
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, (error) => {
