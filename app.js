@@ -37,8 +37,16 @@ app.use("/", authRouter);
 app.use("/", messageRouter);
 
 app.use((err, req, res, next) => {
-  console.error(err);
-  res.status(500).send("Server error");
+  console.error(err.stack);
+
+  const statusCode = err.status || 500;
+
+  res.status(statusCode);
+
+  res.render("error", {
+    message: err.message || "Internal Server Error",
+    status: statusCode,
+  });
 });
 
 
