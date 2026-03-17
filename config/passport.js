@@ -8,11 +8,15 @@ passport.use(
     try {
       const user = await userModel.findUserByEmail(username);
 
-      if (!user) return done(null, false);
+      if (!user) {
+        return done(null, false, { message: "Invalid email or password" });
+      }
 
       const match = await bcrypt.compare(password, user.password);
 
-      if (!match) return done(null, false);
+      if (!match) {
+        return done(null, false, { message: "Invalid email or password" });
+      }
 
       return done(null, user);
     } catch (err) {
