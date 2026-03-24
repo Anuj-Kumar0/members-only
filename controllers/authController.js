@@ -41,9 +41,18 @@ body("confirmPassword")
       return res.render("signup", { errors: errors.array() });
     }
 
-    const { firstName, lastName, email, password, isAdmin } = req.body;
+    const { firstName, lastName, email, password, isAdmin, adminPassword } = req.body;
 
-    const adminStatus = isAdmin ? true : false;
+    let adminStatus = false;
+    if (isAdmin) {
+      const correctAdminPassword = process.env.ADMIN_PASSWORD;
+      
+      if (adminPassword !== correctAdminPassword) {
+        return res.render("signup", { errors: [{ msg: "Incorrect admin password" }] });
+      }
+
+      adminStatus = true;
+    }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 

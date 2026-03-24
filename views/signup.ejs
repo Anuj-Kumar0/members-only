@@ -30,7 +30,12 @@
         <input type="password" name="confirmPassword" required>
 
         <label>Admin</label>
-        <input type="checkbox" name="isAdmin">
+        <input type="checkbox" name="isAdmin" id="adminCheckbox" onchange="toggleAdminPasswordInput()">
+
+        <div id="adminPasswordInput" style="display: none;">
+            <label for="adminPassword">Admin Password</label>
+            <input type="password" name="adminPassword" id="adminPassword" placeholder="Enter admin password" required>
+        </div>
 
         <button type="submit">Sign Up</button>
 
@@ -48,6 +53,18 @@
                 <% }) %>
         </ul>
         <% } %>
+
+            <script>
+                function toggleAdminPasswordInput() {
+                    const adminCheckbox = document.getElementById('adminCheckbox');
+                    const adminPasswordInput = document.getElementById('adminPasswordInput');
+                    if (adminCheckbox.checked) {
+                        adminPasswordInput.style.display = 'block';
+                    } else {
+                        adminPasswordInput.style.display = 'none';
+                    }
+                }
+            </script>
 </body>
 
 </html>
